@@ -1,91 +1,92 @@
-# 🌸 AI Excuse Generator — Deployment Guide
+# 🌸 AI Excuse Generator
 
-## Your project structure
-```
-excuse_app/
-├── app.py            ← main Streamlit app
-├── flux_ai.py        ← image generator (Stability AI)
-├── requirements.txt  ← fixed dependencies
-├── packages.txt      ← system packages for Streamlit Cloud
-└── .env              ← API keys (local only, don't commit!)
-```
+A Streamlit web app that uses AI to generate believable, personalised excuses in multiple languages — with audio playback, visual proof generation, and emergency message simulation.
+
+**[Live Demo →](https://your-app.streamlit.app)** *(replace with your URL)*
 
 ---
 
-## STEP 1 — Set up API Keys
+## ✨ Features
 
-### On Streamlit Cloud (secrets)
-1. Go to [share.streamlit.io](https://share.streamlit.io) → your app → ⚙️ Settings → **Secrets**
-2. Paste this:
-```toml
-OPENROUTER_API_KEY = "sk-or-your-key-here"
-STABILITY_API_KEY  = "sk-your-key-here"
+| Feature | What it does |
+|---|---|
+| 🎲 Excuse Generator | Pick category, situation & urgency → get a believable excuse instantly |
+| 🖼️ Proof Generator | Generate a fake hospital cert, WhatsApp chat, or location log as an image |
+| 🚨 Emergency Simulator | Simulate an urgent message from Mom, Boss, Doctor, etc. |
+| 🔊 Audio Playback | Hear your excuse read aloud via text-to-speech |
+| 🌍 Multi-language | Output in English, Hindi, Tamil, Telugu, or Spanish |
+| ⭐ Favourites | Save and revisit your best excuses |
+
+---
+
+## 🚀 Run Locally
+
+**1. Clone the repo**
+```bash
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+cd YOUR_REPO
 ```
-3. Save → Reboot app.
 
-### Locally (.env file)
-Create `.env` in the project root:
+**2. Install dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+**3. Add your API keys** — create a `.env` file:
 ```
 OPENROUTER_API_KEY=sk-or-your-key-here
 STABILITY_API_KEY=sk-your-key-here
 ```
 
----
-
-## STEP 2 — Install locally (optional test)
-
+**4. Run**
 ```bash
-# Delete old venv if you have one
-rm -rf venv
-
-# Create fresh venv
-python3.11 -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run locally
 streamlit run app.py
 ```
 
 ---
 
-## STEP 3 — Deploy to Streamlit Cloud
+## ☁️ Deploy on Streamlit Cloud
 
-```bash
-# 1. Make sure all files are saved
-# 2. Init git if not done
-git init
-git add .
-git commit -m "Initial commit — fixed deps + new UI"
+1. Push this repo to GitHub
+2. Go to [share.streamlit.io](https://share.streamlit.io) → New app → select your repo
+3. Add your keys under **Settings → Secrets**:
 
-# 3. Push to GitHub
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
-git push -u origin main
+```toml
+OPENROUTER_API_KEY = "sk-or-..."
+STABILITY_API_KEY  = "sk-..."
 ```
 
-Then on [share.streamlit.io](https://share.streamlit.io):
-1. Click **New app**
-2. Select your GitHub repo
-3. Main file path: `app.py`
-4. Click **Deploy**
+4. Click **Deploy** ✅
 
 ---
 
-## What was fixed
+## 🔑 API Keys
 
-| Issue | Fix |
-|-------|-----|
-| `pillow==10.2.0` fails on Python 3.13 | Upgraded to `Pillow==10.4.0` (Python 3.13 compatible) |
-| `streamlit==1.31.0` outdated | Upgraded to `1.41.0` |
-| `openai==0.28.0` | Pinned to `0.28.1` (stable, compatible) |
-| APIs blocked locally | All keys now loaded from Streamlit secrets first |
-| `packages.txt` had `libsndfile1` | Removed unnecessary package, kept `ffmpeg` only |
+- **OpenRouter** (free) → [openrouter.ai](https://openrouter.ai) — powers all text generation
+- **Stability AI** (optional) → [platform.stability.ai](https://platform.stability.ai) — only needed for Proof Generator
 
 ---
 
-## Get your free API keys
+## 🛠️ Built With
 
-- **OpenRouter** (for AI text): https://openrouter.ai — free tier available
-- **Stability AI** (for images): https://platform.stability.ai — needed only for Proof Generator tab
+- [Streamlit](https://streamlit.io)
+- [OpenAI API](https://openrouter.ai) via OpenRouter (Mixtral 8x7B)
+- [Stability AI](https://stability.ai) (SDXL)
+- [gTTS](https://pypi.org/project/gTTS/) — text to speech
+- [deep-translator](https://pypi.org/project/deep-translator/) — multi-language support
+
+---
+
+## 📁 Project Structure
+
+```
+├── app.py              # Main Streamlit app
+├── flux_ai.py          # Stability AI image generator
+├── requirements.txt    # Python dependencies
+├── packages.txt        # System packages for Streamlit Cloud
+└── .env                # API keys (local only — don't commit!)
+```
+
+---
+
+*Built as a solo project in ~1–2 weeks. For entertainment purposes only — use responsibly! 🌿*
