@@ -2,7 +2,7 @@
 
 A Streamlit web app that uses AI to generate believable, personalised excuses in multiple languages — with audio playback, visual proof generation, and emergency message simulation.
 
-**[Live Demo →]([https://intelligent-excuse-generator.streamlit.app/]))** *(replace with your URL)*
+**[Live Demo →]** *([https://intelligent-excuse-generator.streamlit.app/])*
 
 ---
 
